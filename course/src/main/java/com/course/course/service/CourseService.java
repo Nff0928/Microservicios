@@ -1,10 +1,11 @@
 package com.course.course.service;
 
-import com.course.course.entity.Course;
+import com.course.course.dto.CourseDTO;
+
 
 public interface CourseService {
 
-    Course saveCourse(Course course);
-    Course findByCourseCode(String courseCode);
+    CourseDTO saveCourse(CourseDTO courseDTO);
+    CourseDTO findByCourseCode(String courseCode);
     
 }

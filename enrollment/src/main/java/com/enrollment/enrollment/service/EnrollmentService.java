@@ -1,10 +1,11 @@
 package com.enrollment.enrollment.service;
 
-import com.enrollment.enrollment.entity.Enrollment;
+import com.enrollment.enrollment.dto.EnrollmentDto;
+
 
 
 public interface EnrollmentService  {
-    Enrollment saveEnrollment(Enrollment enrollment);
-    Enrollment findById(Long id);
+    EnrollmentDto saveEnrollment(EnrollmentDto enrollmentDto);
+    EnrollmentDto findById(Long id);
     
 }

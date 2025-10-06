@@ -1,11 +1,12 @@
 package com.students.students.service;
 
-import com.students.students.entity.Student;
+import com.students.students.dto.StudentDto;
+
 
 public interface StudentService {
 
-    Student saveStudent(Student student);
+    StudentDto saveStudent(StudentDto studentdto);
 
-    Student findByIdentificationNumber(String identificationNumber);
+    StudentDto findByIdentificationNumber(String identificationNumber);
     
 }

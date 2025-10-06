@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.students.students.dto.StudentDto;
 import com.students.students.entity.Student;
 import com.students.students.service.StudentService;
 
@@ -23,12 +24,12 @@ public class StudentController {
 
 
     @PostMapping
-    public Student save (@RequestBody Student student) {
-        return studentService.saveStudent(student);
+    public StudentDto save (@RequestBody StudentDto studentdto) {
+        return studentService.saveStudent(studentdto);
     }
 
     @GetMapping("/identification-number/{identification}")
-    public Student FindByIdentificationNumber(@PathVariable("identification") String identificationNumber) {
+    public StudentDto FindByIdentificationNumber(@PathVariable("identification") String identificationNumber) {
         return studentService.findByIdentificationNumber(identificationNumber);
     }
 

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.enrollment.enrollment.dto.EnrollmentDto;
 import com.enrollment.enrollment.entity.Enrollment;
 import com.enrollment.enrollment.service.EnrollmentService;
 
@@ -21,13 +22,13 @@ public class EnrollmentController {
 
 
     @PostMapping
-    public Enrollment save(@RequestBody Enrollment enrollment){
-        return enrollmentService.saveEnrollment(enrollment);
+    public EnrollmentDto save(@RequestBody EnrollmentDto enrollmentDto){
+        return enrollmentService.saveEnrollment(enrollmentDto);
     }
 
 
     @GetMapping("/enrollment/{id}")
-    public Enrollment findById(@PathVariable Long id){
+    public EnrollmentDto findById(@PathVariable Long id){
         return enrollmentService.findById(id);
     }
     

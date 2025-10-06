@@ -60,7 +60,25 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.2.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper-module-record -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper-module-record</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.pro-crafting.tools</groupId>
+			<artifactId>record-jar-converter-web</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+ </dependencies>
 
 	<build>
 		<plugins>

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.course.course.dto.CourseDTO;
 import com.course.course.entity.Course;
 import com.course.course.service.CourseService;
 
@@ -22,13 +23,13 @@ public class CourseController {
 
 
     @PostMapping
-    public Course sabe(@RequestBody Course course){
-        return courseService.saveCourse(course);
+    public CourseDTO save(@RequestBody CourseDTO courseDTO){
+        return courseService.saveCourse(courseDTO);
     }
 
 
     @GetMapping("/course/{courseCode}")
-    public Course findByCourseCode(@PathVariable String courseCode){
+    public CourseDTO findByCourseCode(@PathVariable String courseCode){
         return courseService.findByCourseCode(courseCode);
     }
 
