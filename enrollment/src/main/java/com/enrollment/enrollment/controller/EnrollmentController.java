@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.enrollment.enrollment.dto.EnrollmentDto;
+import com.enrollment.enrollment.dto.EnrollmentResponseDto;
 import com.enrollment.enrollment.entity.Enrollment;
 import com.enrollment.enrollment.service.EnrollmentService;
 
@@ -27,8 +28,8 @@ public class EnrollmentController {
     }
 
 
-    @GetMapping("/enrollment/{id}")
-    public EnrollmentDto findById(@PathVariable Long id){
+    @GetMapping("/{id}")
+    public EnrollmentResponseDto findById(@PathVariable Long id){
         return enrollmentService.findById(id);
     }
     

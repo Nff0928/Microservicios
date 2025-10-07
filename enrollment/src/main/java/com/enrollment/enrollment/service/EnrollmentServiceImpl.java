@@ -1,10 +1,15 @@
 package com.enrollment.enrollment.service;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.client.RestTemplate;
 
+import com.enrollment.enrollment.dto.CourseDTO;
 import com.enrollment.enrollment.dto.EnrollmentDto;
+import com.enrollment.enrollment.dto.EnrollmentResponseDto;
+import com.enrollment.enrollment.dto.StudentDto;
 import com.enrollment.enrollment.entity.Enrollment;
 import com.enrollment.enrollment.mapper.EnrollmentMapper;
 import com.enrollment.enrollment.repository.EnrollmentRepository;
@@ -18,7 +23,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     private final EnrollmentRepository enrollmentRepository;
     private final ModelMapper modelMapper;
-
+    private final RestTemplate  restTemplate;
 
     @Override
     public EnrollmentDto saveEnrollment(EnrollmentDto enrollmentDto) {
@@ -26,9 +31,27 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
     @Override
-    public EnrollmentDto findById(Long id) {
-        return EnrollmentMapper.toDto(enrollmentRepository.findById(id).get());
+    public EnrollmentResponseDto findById(Long id) {
+        //return EnrollmentMapper.toDto(enrollmentRepository.findById(id).get());
+        Enrollment enrollmentDB = enrollmentRepository.findById(id).get();
+
+        ResponseEntity<StudentDto> studentDTOResponseEntity = restTemplate.getForEntity(
+            "http://localhost:8080/api/students/identification-number/"+ enrollmentDB.getIdentificationNumber(),StudentDto.class);
+
+        ResponseEntity<CourseDTO> courseDTOResponseEntity = restTemplate.getForEntity(
+            "http://localhost:9090/api/courses/course/"+ enrollmentDB.getCourseCode(),CourseDTO.class);
+
+        EnrollmentDto enrollmentDto = EnrollmentMapper.toDto(enrollmentDB);
+        CourseDTO courseDTO = courseDTOResponseEntity.getBody();
+        StudentDto studentDto = studentDTOResponseEntity.getBody();
+       
+        return new EnrollmentResponseDto(enrollmentDto, courseDTO, studentDto);
+       
+
+        
     }
+
+
 
    
     
